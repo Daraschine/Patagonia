@@ -1,0 +1,179 @@
+<!-- ============================================================
+     SECTION 8: ANMELDUNG + FOOTER
+     ============================================================ -->
+<style>
+  .anmeldung {
+    background: var(--red);
+    padding: var(--section-pad-mobile);
+    text-align: center;
+    color: var(--white);
+  }
+
+  @media (min-width: 768px) {
+    .anmeldung { padding: var(--section-pad); }
+  }
+
+  .anmeldung__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .anmeldung__eyebrow {
+    font-family: var(--font-accent);
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.75rem;
+  }
+
+  .anmeldung__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+
+  .anmeldung__deadline {
+    font-size: 1rem;
+    background: rgba(0,0,0,0.25);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .anmeldung__btn {
+    display: inline-block;
+    background: var(--white);
+    color: var(--red);
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1.1rem 2.75rem;
+    border-radius: var(--radius-sm);
+    border: 3px solid var(--white);
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+    margin-bottom: 0.75rem;
+  }
+
+  .anmeldung__btn:hover,
+  .anmeldung__btn:focus {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+    transform: translateY(-2px);
+  }
+
+  .anmeldung__fine {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 0.5rem;
+  }
+
+  /* Hall of Fame */
+  .anmeldung__hof {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .anmeldung__hof-title {
+    font-family: var(--font-accent);
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.25rem;
+  }
+
+  .anmeldung__names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .anmeldung__name-tag {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    border-radius: 100px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: background var(--transition);
+  }
+
+  .anmeldung__name-tag:hover {
+    background: rgba(0,0,0,0.4);
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.5);
+    padding: 2.5rem 1.25rem;
+    text-align: center;
+  }
+
+  .footer__logo {
+    width: 80px;
+    margin: 0 auto 1rem;
+  }
+
+  .footer__name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer__year {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+</style>
+
+<section class="anmeldung" id="anmeldung">
+  <div class="anmeldung__inner">
+
+    <div class="reveal">
+      <p class="anmeldung__eyebrow">Die Pflicht ruft.</p>
+      <h2 class="anmeldung__title">Du bist dabei.<br>Du weisst es bereits.</h2>
+      <p class="anmeldung__deadline">Verbindliche Anmeldung bis 30. April 2026</p>
+      <br>
+      <a href="https://forms.gle/A1EzFYUe6viYs1E27" class="anmeldung__btn" target="_blank" rel="noopener">
+        Jetzt verbindlich anmelden
+      </a>
+      <p class="anmeldung__fine">Du wirst zum offiziellen Anmeldeformular weitergeleitet.</p>
+    </div>
+
+    <div class="anmeldung__hof reveal">
+      <p class="anmeldung__hof-title">Folgende Patagonier haben sich in der ersten Umfrage provisorisch angemeldet:</p>
+      <div class="anmeldung__names">
+        <span class="anmeldung__name-tag">Jerkinow</span>
+        <span class="anmeldung__name-tag">Z!one</span>
+        <span class="anmeldung__name-tag">GERmanimal</span>
+        <span class="anmeldung__name-tag">Pan</span>
+        <span class="anmeldung__name-tag">Z!Hüngler</span>
+        <span class="anmeldung__name-tag">Z!-tat</span>
+        <span class="anmeldung__name-tag">Knut</span>
+        <span class="anmeldung__name-tag">Passe-par-toutes</span>
+        <span class="anmeldung__name-tag">Felsli</span>
+        <span class="anmeldung__name-tag">Sprinkler</span>
+        <span class="anmeldung__name-tag">Kei-SatZ!</span>
+        <span class="anmeldung__name-tag">Dies-Das-AnanaZ</span>
+        <span class="anmeldung__name-tag">LeFleur</span>
+        <span class="anmeldung__name-tag">Z!ugtzwang</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <img src="img/logo.png" alt="Bierfamilie Patagonia" class="footer__logo">
+  <p class="footer__name">Bierfamilie Patagonia</p>
+  <p class="footer__year">MMXI</p>
+</footer>

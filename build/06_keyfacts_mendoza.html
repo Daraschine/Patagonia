@@ -1,0 +1,246 @@
+<!-- ============================================================
+     SECTION 6: KEY FACTS
+     ============================================================ -->
+<style>
+  .keyfacts {
+    background: var(--cream);
+    padding: var(--section-pad-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .keyfacts { padding: var(--section-pad); }
+  }
+
+  .keyfacts__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .keyfacts__label {
+    font-family: var(--font-accent);
+    font-size: 1.2rem;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+
+  .keyfacts__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  .keyfacts__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 480px) {
+    .keyfacts__grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 768px) {
+    .keyfacts__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .keyfacts__card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.4rem 1.25rem;
+    border-top: 3px solid var(--red);
+  }
+
+  .keyfacts__card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1;
+  }
+
+  .keyfacts__card-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+
+  .keyfacts__card-value {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--black);
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+
+  .keyfacts__card-note {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* Highlight card (deadline) */
+  .keyfacts__card--highlight {
+    background: var(--black);
+    border-top-color: var(--red-light);
+  }
+
+  .keyfacts__card--highlight .keyfacts__card-title {
+    color: var(--red-light);
+  }
+
+  .keyfacts__card--highlight .keyfacts__card-value {
+    color: var(--white);
+  }
+
+  .keyfacts__card--highlight .keyfacts__card-note {
+    color: rgba(255,255,255,0.55);
+  }
+</style>
+
+<!-- ============================================================
+     SECTION 7: MENDOZA
+     ============================================================ -->
+<style>
+  .mendoza {
+    background: var(--white);
+    padding: var(--section-pad-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .mendoza { padding: var(--section-pad); }
+  }
+
+  .mendoza__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 700px) {
+    .mendoza__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .mendoza__img-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .mendoza__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--cream);
+  }
+
+  .mendoza__text {
+    text-align: center;
+  }
+
+  @media (min-width: 700px) {
+    .mendoza__text { text-align: left; }
+  }
+
+  .mendoza__tag {
+    display: inline-block;
+    background: var(--cream-dark);
+    color: var(--gray);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .mendoza__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .mendoza__desc {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .mendoza__quote {
+    font-family: var(--font-accent);
+    font-size: 1.5rem;
+    color: var(--red);
+    line-height: 1.35;
+  }
+</style>
+
+<section class="keyfacts" id="keyfacts">
+  <div class="container">
+
+    <div class="keyfacts__header reveal">
+      <p class="keyfacts__label">Alles auf einen Blick</p>
+      <h2 class="keyfacts__title">Die wichtigsten Infos</h2>
+    </div>
+
+    <div class="keyfacts__grid reveal-stagger">
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">📅</div>
+        <p class="keyfacts__card-title">Reisedaten</p>
+        <p class="keyfacts__card-value">5. – 14. Feb 2027</p>
+        <p class="keyfacts__card-note">Abflug Freitagabend ab Zürich. Individuelle Rückreise ab 14. Februar.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">💸</div>
+        <p class="keyfacts__card-title">Kosten</p>
+        <p class="keyfacts__card-value">ca. CHF 2'500 – 3'000</p>
+        <p class="keyfacts__card-note">Flüge allein ca. CHF 1'500. Kosten für Unterkunft, Essen und Aktivitäten dazurechnen.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">🧳</div>
+        <p class="keyfacts__card-title">Packliste</p>
+        <p class="keyfacts__card-value">Mix aus warm & leicht</p>
+        <p class="keyfacts__card-note">Leichte Kleider für Buenos Aires, warme & sportliche Sachen für Patagonien, Wanderschuhe. Kein Tenue Parfait.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">👨‍👩‍👧</div>
+        <p class="keyfacts__card-title">Begleitung</p>
+        <p class="keyfacts__card-value">Familie willkommen</p>
+        <p class="keyfacts__card-note">Partner*innen und Kinder sind herzlich eingeladen.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">✈️</div>
+        <p class="keyfacts__card-title">Route</p>
+        <p class="keyfacts__card-value">ZRH → EZE → FTE</p>
+        <p class="keyfacts__card-note">Zürich – Buenos Aires – El Calafate. Inlandsflug inklusive geplant.</p>
+      </div>
+
+      <div class="keyfacts__card keyfacts__card--highlight">
+        <div class="keyfacts__card-icon">⚠️</div>
+        <p class="keyfacts__card-title">Anmeldefrist</p>
+        <p class="keyfacts__card-value">30. April 2026</p>
+        <p class="keyfacts__card-note">Verbindliche Anmeldung bis zu diesem Datum. Danach ist der Zug abgefahren.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>

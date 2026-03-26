@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patagonia Reise 2027 — Bierfamilie Patagonia</title>
+  <meta name="description" content="Die Bierfamilie Patagonia reist im Februar 2027 nach Buenos Aires, El Calafate und El Chaltén. Meld dich an bis 30. April 2026.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Source+Sans+3:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+/* === BASE STYLES === */
+:root {
+      --red:        #CC0000;
+      --red-dark:   #990000;
+      --red-light:  #FF2222;
+      --black:      #1a1a1a;
+      --black-soft: #2c2c2c;
+      --white:      #ffffff;
+      --cream:      #F5F0E8;
+      --cream-dark: #E8E0D0;
+      --gray:       #888880;
+      --gray-light: #CCCCCC;
+
+      --font-display: 'Abril Fatface', serif;
+      --font-body:    'Source Sans 3', sans-serif;
+      --font-accent:  'Caveat', cursive;
+
+      --max-width: 1100px;
+      --section-pad: 5rem 1.25rem;
+      --section-pad-mobile: 3.5rem 1.25rem;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--black);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Scroll-animation base state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.25s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.35s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.45s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.55s; opacity: 1; transform: none; }
+
+/* === HERO SECTION === */
+.hero {
+    position: relative;
+    min-height: 100svh;
+    min-height: 100vh; /* fallback */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('img/patagonia.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  /* Double overlay: deep black bottom, slightly lighter top */
+  .hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.55) 0%,
+      rgba(10,10,10,0.45) 40%,
+      rgba(10,10,10,0.75) 100%
+    );
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .hero__logo {
+    width: 320px;
+    height: auto;
+    margin: 0 auto 1.75rem;
+  }
+
+  .hero__eyebrow {
+    font-family: var(--font-accent);
+    font-size: 1.4rem;
+    color: var(--red-light);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 9vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  .hero__subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+
+  .hero__date {
+    font-family: var(--font-body);
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__cta {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 1rem 2.25rem;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--red);
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    animation: pulse-cta 2.8s ease-in-out infinite;
+  }
+
+  .hero__cta:hover,
+  .hero__cta:focus {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(204,0,0,0.45);
+    animation: none;
+  }
+
+  @keyframes pulse-cta {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(204,0,0,0.5); }
+    50%       { box-shadow: 0 0 0 10px rgba(204,0,0,0); }
+  }
+
+  .hero__deadline {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.02em;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero__scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid rgba(255,255,255,0.4);
+    border-bottom: 2px solid rgba(255,255,255,0.4);
+    transform: rotate(45deg);
+    animation: bounce-arrow 1.6s ease-in-out infinite;
+  }
+
+  @keyframes bounce-arrow {
+    0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+    50%       { transform: rotate(45deg) translateY(5px); opacity: 0.9; }
+  }
+
+  @media (max-width: 640px) {
+    .hero__logo { width: 220px; }
+  }
+
+/* === REISEPLAN TIMELINE === */
+.timeline {
+    background: var(--white);
+    padding: var(--section-pad-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .timeline { padding: var(--section-pad); }
+  }
+
+  .timeline__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .timeline__label {
+    font-family: var(--font-accent);
+    font-size: 1.2rem;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  /* ── Track & vertical line ───────────────────────────── */
+  .timeline__track {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Vertical centre line — only on desktop */
+  @media (min-width: 860px) {
+    .timeline__track::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--cream-dark);
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ── Single item ─────────────────────────────────────── */
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .tl-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Desktop: two columns, image and text alternate sides */
+  @media (min-width: 860px) {
+    .tl-item {
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    /* Odd items: image left, text right */
+    .tl-item:nth-child(odd) .tl-item__img  { order: 1; }
+    .tl-item:nth-child(odd) .tl-item__dot  { order: 2; }
+    .tl-item:nth-child(odd) .tl-item__text { order: 3; }
+
+    /* Even items: text left, image right */
+    .tl-item:nth-child(even) .tl-item__text { order: 1; text-align: right; }
+    .tl-item:nth-child(even) .tl-item__dot  { order: 2; }
+    .tl-item:nth-child(even) .tl-item__img  { order: 3; }
+
+    /* Slide in from correct side */
+    .tl-item:nth-child(odd)  { transform: translateX(-20px); opacity: 0; }
+    .tl-item:nth-child(even) { transform: translateX(20px);  opacity: 0; }
+    .tl-item.visible         { transform: translateX(0);     opacity: 1; }
+  }
+
+  /* ── Image pane ──────────────────────────────────────── */
+  .tl-item__img {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--cream);
+  }
+
+  .tl-item__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+
+  .tl-item__img:hover img { transform: scale(1.04); }
+
+  /* Items without image get a coloured placeholder */
+  .tl-item__img--none {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+  }
+
+  .tl-item__img--none-inner {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--cream-dark);
+    user-select: none;
+  }
+
+  /* ── Centre dot ──────────────────────────────────────── */
+  .tl-item__dot {
+    display: none;
+  }
+
+  @media (min-width: 860px) {
+    .tl-item__dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-item__dot-inner {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--red);
+    }
+
+    .tl-item--special .tl-item__dot-inner {
+      background: var(--red);
+      box-shadow: 0 0 0 5px rgba(204,0,0,0.15);
+    }
+  }
+
+  /* ── Text pane ───────────────────────────────────────── */
+  .tl-item__text {
+    padding: 1.25rem 0 0;
+  }
+
+  @media (min-width: 860px) {
+    .tl-item__text {
+      padding: 0 1.5rem;
+    }
+  }
+
+  .tl-item__date {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.25rem;
+  }
+
+  .tl-item__place {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--black);
+    margin-bottom: 0.6rem;
+    line-height: 1.15;
+  }
+
+  .tl-item__desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .tl-item__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  @media (min-width: 860px) {
+    .tl-item:nth-child(even) .tl-item__tags {
+      justify-content: flex-end;
+    }
+  }
+
+  .tl-item__tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: var(--cream);
+    color: var(--black-soft);
+    border-radius: 100px;
+    padding: 0.25rem 0.75rem;
+  }
+
+  /* ── Special item (Artikel 4) ────────────────────────── */
+  .tl-item--special .tl-item__img {
+    border: 2px solid var(--red);
+  }
+
+  .tl-item--special .tl-item__date {
+    color: var(--red);
+  }
+
+  .tl-item--special .tl-item__place {
+    color: var(--black);
+  }
+
+  /* ── Statuten Toggle ─────────────────────────────────── */
+  .statuten-toggle {
+    margin-top: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .statuten-toggle::after {
+    content: "▾";
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+
+  .statuten-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+  }
+
+  .statuten-toggle:hover {
+    background: var(--red-dark);
+    border-color: var(--red);
+    color: var(--white);
+  }
+
+  .statuten-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .statuten-body.open { max-height: 400px; }
+
+  .statuten-doc {
+    margin-top: 1rem;
+    background: var(--black);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--red);
+    padding: 1.1rem 1.25rem;
+  }
+
+  .statuten-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .statuten-heading {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .statuten-intro,
+  .statuten-closing {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.55;
+  }
+
+  .statuten-list {
+    list-style: none;
+    margin: 0.5rem 0 0.75rem;
+    padding: 0;
+  }
+
+  .statuten-list li {
+    position: relative;
+    padding: 0.35rem 0 0.35rem 1.6rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.78);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    line-height: 1.5;
+  }
+
+  .statuten-closing--aside {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-style: italic;
+    color: rgba(255,255,255,0.5) !important;
+    font-size: 0.8rem !important;
+  }
+
+  .statuten-list li::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    color: var(--red-light);
+    font-weight: 700;
+  }
+
+/* === KEY FACTS & MENDOZA === */
+.keyfacts {
+    background: var(--cream);
+    padding: var(--section-pad-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .keyfacts { padding: var(--section-pad); }
+  }
+
+  .keyfacts__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .keyfacts__label {
+    font-family: var(--font-accent);
+    font-size: 1.2rem;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+
+  .keyfacts__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  .keyfacts__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 480px) {
+    .keyfacts__grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 768px) {
+    .keyfacts__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .keyfacts__card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.4rem 1.25rem;
+    border-top: 3px solid var(--red);
+  }
+
+  .keyfacts__card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1;
+  }
+
+  .keyfacts__card-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+
+  .keyfacts__card-value {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--black);
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+
+  .keyfacts__card-note {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* Highlight card (deadline) */
+  .keyfacts__card--highlight {
+    background: var(--black);
+    border-top-color: var(--red-light);
+  }
+
+  .keyfacts__card--highlight .keyfacts__card-title {
+    color: var(--red-light);
+  }
+
+  .keyfacts__card--highlight .keyfacts__card-value {
+    color: var(--white);
+  }
+
+  .keyfacts__card--highlight .keyfacts__card-note {
+    color: rgba(255,255,255,0.55);
+  }
+
+.mendoza {
+    background: var(--white);
+    padding: var(--section-pad-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .mendoza { padding: var(--section-pad); }
+  }
+
+  .mendoza__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 700px) {
+    .mendoza__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .mendoza__img-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .mendoza__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--cream);
+  }
+
+  .mendoza__text {
+    text-align: center;
+  }
+
+  @media (min-width: 700px) {
+    .mendoza__text { text-align: left; }
+  }
+
+  .mendoza__tag {
+    display: inline-block;
+    background: var(--cream-dark);
+    color: var(--gray);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .mendoza__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .mendoza__desc {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .mendoza__quote {
+    font-family: var(--font-accent);
+    font-size: 1.5rem;
+    color: var(--red);
+    line-height: 1.35;
+  }
+
+/* === ANMELDUNG & FOOTER === */
+.anmeldung {
+    background: var(--red);
+    padding: var(--section-pad-mobile);
+    text-align: center;
+    color: var(--white);
+  }
+
+  @media (min-width: 768px) {
+    .anmeldung { padding: var(--section-pad); }
+  }
+
+  .anmeldung__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .anmeldung__eyebrow {
+    font-family: var(--font-accent);
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.75rem;
+  }
+
+  .anmeldung__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+
+  .anmeldung__deadline {
+    font-size: 1rem;
+    background: rgba(0,0,0,0.25);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .anmeldung__btn {
+    display: inline-block;
+    background: var(--white);
+    color: var(--red);
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1.1rem 2.75rem;
+    border-radius: var(--radius-sm);
+    border: 3px solid var(--white);
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+    margin-bottom: 0.75rem;
+  }
+
+  .anmeldung__btn:hover,
+  .anmeldung__btn:focus {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+    transform: translateY(-2px);
+  }
+
+  .anmeldung__fine {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 0.5rem;
+  }
+
+  /* Hall of Fame */
+  .anmeldung__hof {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .anmeldung__hof-title {
+    font-family: var(--font-accent);
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.25rem;
+  }
+
+  .anmeldung__names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .anmeldung__name-tag {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    border-radius: 100px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: background var(--transition);
+  }
+
+  .anmeldung__name-tag:hover {
+    background: rgba(0,0,0,0.4);
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.5);
+    padding: 2.5rem 1.25rem;
+    text-align: center;
+  }
+
+  .footer__logo {
+    width: 80px;
+    margin: 0 auto 1rem;
+  }
+
+  .footer__name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer__year {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  </style>
+</head>
+<body>
+
+
+
+<!-- ============================================================
+     Hero Section
+     ============================================================ -->
+
+<!-- ============================================================
+     SECTION 1: HERO
+     ============================================================ -->
+
+
+<section class="hero" id="top">
+  <div class="hero__bg" role="img" aria-label="Fitz Roy Bergpanorama in El Chaltén, Patagonien"></div>
+
+  <div class="hero__content">
+    <img src="img/logo.png" alt="Bierfamilie Patagonia Logo" class="hero__logo">
+    <p class="hero__eyebrow">Bierfamilie Patagonia</p>
+    <h1 class="hero__title">Patagonia-Reise 2027</h1>
+    <p class="hero__subtitle">Buenos Aires &nbsp;·&nbsp; El Calafate &nbsp;·&nbsp; El Chaltén</p>
+    <p class="hero__date">5.–14. Februar 2027</p>
+    <a href="https://forms.gle/A1EzFYUe6viYs1E27" class="hero__cta" target="_blank" rel="noopener">
+      Jetzt anmelden
+    </a>
+    <p class="hero__deadline">Verbindliche Anmeldung bis 30. April 2026</p>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span>Mehr</span>
+    <div class="hero__scroll-arrow"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Reiseplan Timeline
+     ============================================================ -->
+
+<!-- ============================================================
+     SECTION 3: REISEPLAN — Timeline mit Bildern
+     Mobile: einspaltig, Bild oben / Text unten
+     Desktop: abwechselnd links/rechts mit Bild
+     ============================================================ -->
+
+
+<section class="timeline" id="reiseplan">
+  <div class="container">
+
+    <div class="timeline__header reveal">
+      <p class="timeline__label">Tag für Tag</p>
+      <h2 class="timeline__title">Der Reiseplan</h2>
+    </div>
+
+    <div class="timeline__track">
+
+      <!-- 1: Abflug Zürich -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/swiss.jpg" alt="Swiss Airbus A340" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Freitag, 5. Februar</p>
+          <p class="tl-item__place">Zürich — Abflug</p>
+          <p class="tl-item__desc">Freitagabend, Koffer gepackt, Abenteuer voraus. Abflug vom Flughafen Zürich Richtung Buenos Aires. Die Nacht verbringen wir in der Luft.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Abflug ZRH 22:45</span>
+            <span class="tl-item__tag">Swiss / LATAM</span>
+            <span class="tl-item__tag">17h Flugzeit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: Buenos Aires -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/buenosaires.jpg" alt="Buenos Aires" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Sa – Mo, 6. – 8. Februar</p>
+          <p class="tl-item__place">Buenos Aires</p>
+          <p class="tl-item__desc">Ankunft gegen Mittag — die Stadt empfängt uns mit Wärme. Drei Tage Zeit für leckere Bierchen, gutes Essen, ein wenig Kultur und einen lehrreichen Stadtrundgang durch eine der lebendigsten Städte Südamerikas.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Stadtrundgang</span>
+            <span class="tl-item__tag">Kulinarik</span>
+            <span class="tl-item__tag">Kultur</span>
+            <span class="tl-item__tag">Bier</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: El Calafate -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/gletscher.jpg" alt="Perito Moreno Gletscher" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Di – Mi, 9. – 10. Februar</p>
+          <p class="tl-item__place">El Calafate & Perito Moreno</p>
+          <p class="tl-item__desc">Inlandsflug nach El Calafate. Am nächsten Morgen das Hauptereignis: der Perito Moreno Gletscher — einer der wenigen wachsenden Gletscher der Welt. Ein lokaler Anbieter organisiert Tour und Transport direkt ans Eis. Danach Weiterfahrt nach El Chaltén.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Inlandsflug</span>
+            <span class="tl-item__tag">Perito Moreno</span>
+            <span class="tl-item__tag">Geführte Tour</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: El Chaltén -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/fitzroy.jpg" alt="Fitz Roy El Chaltén" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Do – Sa, 11. – 13. Februar</p>
+          <p class="tl-item__place">El Chaltén</p>
+          <p class="tl-item__desc">Drei Tage im Herzen Patagoniens. Entspannen, Natur geniessen, Wanderungen in einem der schönsten Nationalparks der Welt. Abends trifft man sich in der Cervecería Chaltén. Wer früh genug aufsteht: der Fitz Roy Sunrise Hike ist sehr zu empfehlen.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Wandern</span>
+            <span class="tl-item__tag">Natur</span>
+            <span class="tl-item__tag">La Cervecería</span>
+            <span class="tl-item__tag">Fitz Roy Sunrise ★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: Artikel 4 Abend (special) -->
+      <div class="tl-item tl-item--special">
+        <div class="tl-item__img tl-item__img--none" style="background: var(--black);">
+          <span class="tl-item__img--none-inner" style="color: var(--red); font-size:2.5rem;">Art. IV</span>
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Samstagabend, 13. Februar</p>
+          <p class="tl-item__place">El Chaltén — Artikel 4</p>
+          <p class="tl-item__desc">Feierliche Erfüllung der patagonischen Statuten. Anschliessend gemeinsames Abendessen. Ein Abend, der in die Geschichte der Bierfamilie eingehen wird.</p>
+
+          <button class="statuten-toggle" id="statuten-btn" aria-expanded="false" aria-controls="statuten-body">
+            Statuten lesen
+          </button>
+
+          <div class="statuten-body" id="statuten-body">
+            <div class="statuten-doc">
+              <p class="statuten-eyebrow">Statuten der Bierfamilie Patagonia</p>
+              <p class="statuten-heading">Art. 4 — Die drei patagonischen Pflichten</p>
+              <p class="statuten-intro">Jeder Patagonier hat im Verlaufe seines Lebens diese drei Pflichten zu erfüllen:</p>
+              <ul class="statuten-list">
+                <li data-label="a)">fähig sein, sich mit dem patagonischen Volk unterhalten zu können</li>
+                <li data-label="b)">Gras der patagonischen Steppen zu kosten</li>
+                <li data-label="c)">einen Patagonier zeugen</li>
+              </ul>
+              <p class="statuten-closing statuten-closing--aside">Geübte Patagonier sollten in der Lage sein, an jenem Abend alle drei Pflichten zu erfüllen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6: Weiterreise -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/mendoza.jpg" alt="Mendoza" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Sonntag, 14. Februar — optional</p>
+          <p class="tl-item__place">Individuelle Weiterreise</p>
+          <p class="tl-item__desc">Rückreise oder Weiterreise — je nach Interesse, Zeit und Budget. Der Ältestenrat plant einen Abstecher nach Mendoza: «The Land of Good Sunshine and Good Wine». Wer noch nicht genug hat, ist herzlich eingeladen mitzukommen.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Rückreise ab EZE</span>
+            <span class="tl-item__tag">Mendoza optional</span>
+            <span class="tl-item__tag">Wein & Fleisch</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.timeline__track -->
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Key Facts & Mendoza
+     ============================================================ -->
+
+<!-- ============================================================
+     SECTION 6: KEY FACTS
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SECTION 7: MENDOZA
+     ============================================================ -->
+
+
+<section class="keyfacts" id="keyfacts">
+  <div class="container">
+
+    <div class="keyfacts__header reveal">
+      <p class="keyfacts__label">Alles auf einen Blick</p>
+      <h2 class="keyfacts__title">Die wichtigsten Infos</h2>
+    </div>
+
+    <div class="keyfacts__grid reveal-stagger">
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">📅</div>
+        <p class="keyfacts__card-title">Reisedaten</p>
+        <p class="keyfacts__card-value">5. – 14. Feb 2027</p>
+        <p class="keyfacts__card-note">Abflug Freitagabend ab Zürich. Individuelle Rückreise ab 14. Februar.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">💸</div>
+        <p class="keyfacts__card-title">Kosten</p>
+        <p class="keyfacts__card-value">ca. CHF 2'500 – 3'000</p>
+        <p class="keyfacts__card-note">Flüge allein ca. CHF 1'500. Kosten für Unterkunft, Essen und Aktivitäten dazurechnen.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">🧳</div>
+        <p class="keyfacts__card-title">Packliste</p>
+        <p class="keyfacts__card-value">Mix aus warm & leicht</p>
+        <p class="keyfacts__card-note">Leichte Kleider für Buenos Aires, warme & sportliche Sachen für Patagonien, Wanderschuhe. Kein Tenue Parfait.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">👨‍👩‍👧</div>
+        <p class="keyfacts__card-title">Begleitung</p>
+        <p class="keyfacts__card-value">Familie willkommen</p>
+        <p class="keyfacts__card-note">Partner*innen und Kinder sind herzlich eingeladen.</p>
+      </div>
+
+      <div class="keyfacts__card">
+        <div class="keyfacts__card-icon">✈️</div>
+        <p class="keyfacts__card-title">Route</p>
+        <p class="keyfacts__card-value">ZRH → EZE → FTE</p>
+        <p class="keyfacts__card-note">Zürich – Buenos Aires – El Calafate. Inlandsflug inklusive geplant.</p>
+      </div>
+
+      <div class="keyfacts__card keyfacts__card--highlight">
+        <div class="keyfacts__card-icon">⚠️</div>
+        <p class="keyfacts__card-title">Anmeldefrist</p>
+        <p class="keyfacts__card-value">30. April 2026</p>
+        <p class="keyfacts__card-note">Verbindliche Anmeldung bis zu diesem Datum. Danach ist der Zug abgefahren.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     Anmeldung & Footer
+     ============================================================ -->
+
+<!-- ============================================================
+     SECTION 8: ANMELDUNG + FOOTER
+     ============================================================ -->
+
+
+<section class="anmeldung" id="anmeldung">
+  <div class="anmeldung__inner">
+
+    <div class="reveal">
+      <p class="anmeldung__eyebrow">Die Pflicht ruft.</p>
+      <h2 class="anmeldung__title">Du bist dabei.<br>Du weisst es bereits.</h2>
+      <p class="anmeldung__deadline">Verbindliche Anmeldung bis 30. April 2026</p>
+      <br>
+      <a href="https://forms.gle/A1EzFYUe6viYs1E27" class="anmeldung__btn" target="_blank" rel="noopener">
+        Jetzt verbindlich anmelden
+      </a>
+      <p class="anmeldung__fine">Du wirst zum offiziellen Anmeldeformular weitergeleitet.</p>
+    </div>
+
+    <div class="anmeldung__hof reveal">
+      <p class="anmeldung__hof-title">Folgende Patagonier haben sich in der ersten Umfrage provisorisch angemeldet:</p>
+      <div class="anmeldung__names">
+        <span class="anmeldung__name-tag">Jerkinow</span>
+        <span class="anmeldung__name-tag">Z!one</span>
+        <span class="anmeldung__name-tag">GERmanimal</span>
+        <span class="anmeldung__name-tag">Pan</span>
+        <span class="anmeldung__name-tag">Z!Hüngler</span>
+        <span class="anmeldung__name-tag">Z!-tat</span>
+        <span class="anmeldung__name-tag">Knut</span>
+        <span class="anmeldung__name-tag">Passe-par-toutes</span>
+        <span class="anmeldung__name-tag">Felsli</span>
+        <span class="anmeldung__name-tag">Sprinkler</span>
+        <span class="anmeldung__name-tag">Kei-SatZ!</span>
+        <span class="anmeldung__name-tag">Dies-Das-AnanaZ</span>
+        <span class="anmeldung__name-tag">LeFleur</span>
+        <span class="anmeldung__name-tag">Z!ugtzwang</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <img src="img/logo.png" alt="Bierfamilie Patagonia" class="footer__logo">
+  <p class="footer__name">Bierfamilie Patagonia</p>
+  <p class="footer__year">MMXI</p>
+</footer>
+
+<script>
+// -------------------------------------------------------
+// 1. IntersectionObserver für Scroll-Animationen
+// -------------------------------------------------------
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Einmalig — danach nicht mehr beobachten
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .reveal-stagger, .tl-item').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+
+
+// -------------------------------------------------------
+// 2. Artikel 4 — Toggle mit max-height Transition
+// -------------------------------------------------------
+(function() {
+  var btn = document.getElementById('artikel4-toggle');
+  var body = document.getElementById('artikel4-body');
+  if (!btn || !body) return;
+
+  btn.addEventListener('click', function() {
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+
+    var label = btn.querySelector('.artikel4__seal-label');
+    if (label) {
+      label.textContent = isOpen ? 'Artikel 4 — Aufdecken' : 'Artikel 4 — Zuklappen';
+    }
+  });
+})();
+
+
+// -------------------------------------------------------
+// 3. Interaktive Karte — Popups via click/touch
+// -------------------------------------------------------
+(function() {
+  var mapWrap = document.querySelector('.karte__map-wrap');
+  if (!mapWrap) return;
+
+  var activePopup = null;
+  var activePin = null;
+
+  function closeAll() {
+    if (activePopup) {
+      activePopup.classList.remove('show');
+      activePopup = null;
+    }
+    if (activePin) {
+      activePin.classList.remove('active');
+      activePin = null;
+    }
+  }
+
+  // Position a popup relative to the map wrapper
+  function positionPopup(popup, pin, svgEl) {
+    var svgRect = svgEl.getBoundingClientRect();
+    var wrapRect = mapWrap.getBoundingClientRect();
+
+    // Get the circle element inside the pin group for position reference
+    var circle = pin.querySelector('.map-pin__circle');
+    var circleBBox = circle.getBoundingClientRect();
+
+    // Pin center relative to wrapper
+    var pinX = circleBBox.left - wrapRect.left + circleBBox.width / 2;
+    var pinY = circleBBox.top - wrapRect.top + circleBBox.height / 2;
+
+    var popupW = popup.offsetWidth || 280;
+    var popupH = popup.offsetHeight || 260;
+    var wrapW = wrapRect.width;
+
+    // Default: popup above the pin
+    var left = pinX - popupW / 2;
+    var top  = pinY - popupH - 18;
+
+    // Clamp horizontal: don't go off left or right edge
+    if (left < 4) left = 4;
+    if (left + popupW > wrapW - 4) left = wrapW - popupW - 4;
+
+    // If popup would go above wrapper, show below pin instead
+    if (top < 4) top = pinY + 24;
+
+    popup.style.left = left + 'px';
+    popup.style.top  = top  + 'px';
+  }
+
+  // Activate a pin and its popup
+  function activatePin(pin) {
+    var popupId = pin.getAttribute('data-popup');
+    var popup = document.getElementById(popupId);
+    var svgEl = mapWrap.querySelector('svg');
+    if (!popup || !svgEl) return;
+
+    if (activePopup === popup) {
+      // Same pin: close
+      closeAll();
+      return;
+    }
+
+    closeAll();
+
+    pin.classList.add('active');
+    popup.classList.add('show');
+    activePopup = popup;
+    activePin = pin;
+
+    // Re-run after browser renders the popup (needed for offsetHeight)
+    requestAnimationFrame(function() {
+      positionPopup(popup, pin, svgEl);
+    });
+  }
+
+  // Pin click / touch
+  mapWrap.querySelectorAll('.map-pin').forEach(function(pin) {
+    pin.addEventListener('click', function(e) {
+      e.stopPropagation();
+      activatePin(pin);
+    });
+
+    // Keyboard: Enter / Space
+    pin.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activatePin(pin);
+      }
+    });
+  });
+
+  // Close buttons inside popups
+  mapWrap.querySelectorAll('.map-popup__close').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closeAll();
+    });
+  });
+
+  // Click outside: close
+  document.addEventListener('click', function() {
+    closeAll();
+  });
+
+  // Prevent popup click from bubbling up to document
+  mapWrap.querySelectorAll('.map-popup').forEach(function(p) {
+    p.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
+
+  // Reposition on resize
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      if (activePopup && activePin) {
+        var svgEl = mapWrap.querySelector('svg');
+        positionPopup(activePopup, activePin, svgEl);
+      }
+    }, 100);
+  });
+})();
+
+
+// -------------------------------------------------------
+// 4. Statuten Toggle in der Timeline
+// -------------------------------------------------------
+(function() {
+  var btn  = document.getElementById('statuten-btn');
+  var body = document.getElementById('statuten-body');
+  if (!btn || !body) return;
+
+  btn.addEventListener('click', function() {
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.textContent = isOpen ? 'Statuten lesen' : 'Statuten schliessen';
+    // Re-add the ::after arrow via the aria attribute (CSS handles it)
+  });
+})();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!-- ============================================================
+     SECTION 3: REISEPLAN — Timeline mit Bildern
+     Mobile: einspaltig, Bild oben / Text unten
+     Desktop: abwechselnd links/rechts mit Bild
+     ============================================================ -->
+<style>
+  .timeline {
+    background: var(--white);
+    padding: var(--section-pad-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .timeline { padding: var(--section-pad); }
+  }
+
+  .timeline__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .timeline__label {
+    font-family: var(--font-accent);
+    font-size: 1.2rem;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline__title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  /* ── Track & vertical line ───────────────────────────── */
+  .timeline__track {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Vertical centre line — only on desktop */
+  @media (min-width: 860px) {
+    .timeline__track::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--cream-dark);
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ── Single item ─────────────────────────────────────── */
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .tl-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Desktop: two columns, image and text alternate sides */
+  @media (min-width: 860px) {
+    .tl-item {
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    /* Odd items: image left, text right */
+    .tl-item:nth-child(odd) .tl-item__img  { order: 1; }
+    .tl-item:nth-child(odd) .tl-item__dot  { order: 2; }
+    .tl-item:nth-child(odd) .tl-item__text { order: 3; }
+
+    /* Even items: text left, image right */
+    .tl-item:nth-child(even) .tl-item__text { order: 1; text-align: right; }
+    .tl-item:nth-child(even) .tl-item__dot  { order: 2; }
+    .tl-item:nth-child(even) .tl-item__img  { order: 3; }
+
+    /* Slide in from correct side */
+    .tl-item:nth-child(odd)  { transform: translateX(-20px); opacity: 0; }
+    .tl-item:nth-child(even) { transform: translateX(20px);  opacity: 0; }
+    .tl-item.visible         { transform: translateX(0);     opacity: 1; }
+  }
+
+  /* ── Image pane ──────────────────────────────────────── */
+  .tl-item__img {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--cream);
+  }
+
+  .tl-item__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+
+  .tl-item__img:hover img { transform: scale(1.04); }
+
+  /* Items without image get a coloured placeholder */
+  .tl-item__img--none {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+  }
+
+  .tl-item__img--none-inner {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--cream-dark);
+    user-select: none;
+  }
+
+  /* ── Centre dot ──────────────────────────────────────── */
+  .tl-item__dot {
+    display: none;
+  }
+
+  @media (min-width: 860px) {
+    .tl-item__dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-item__dot-inner {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--red);
+    }
+
+    .tl-item--special .tl-item__dot-inner {
+      background: var(--red);
+      box-shadow: 0 0 0 5px rgba(204,0,0,0.15);
+    }
+  }
+
+  /* ── Text pane ───────────────────────────────────────── */
+  .tl-item__text {
+    padding: 1.25rem 0 0;
+  }
+
+  @media (min-width: 860px) {
+    .tl-item__text {
+      padding: 0 1.5rem;
+    }
+  }
+
+  .tl-item__date {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.25rem;
+  }
+
+  .tl-item__place {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--black);
+    margin-bottom: 0.6rem;
+    line-height: 1.15;
+  }
+
+  .tl-item__desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .tl-item__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  @media (min-width: 860px) {
+    .tl-item:nth-child(even) .tl-item__tags {
+      justify-content: flex-end;
+    }
+  }
+
+  .tl-item__tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: var(--cream);
+    color: var(--black-soft);
+    border-radius: 100px;
+    padding: 0.25rem 0.75rem;
+  }
+
+  /* ── Special item (Artikel 4) ────────────────────────── */
+  .tl-item--special .tl-item__img {
+    border: 2px solid var(--red);
+  }
+
+  .tl-item--special .tl-item__date {
+    color: var(--red);
+  }
+
+  .tl-item--special .tl-item__place {
+    color: var(--black);
+  }
+
+  /* ── Statuten Toggle ─────────────────────────────────── */
+  .statuten-toggle {
+    margin-top: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .statuten-toggle::after {
+    content: "▾";
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+
+  .statuten-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+  }
+
+  .statuten-toggle:hover {
+    background: var(--red-dark);
+    border-color: var(--red);
+    color: var(--white);
+  }
+
+  .statuten-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .statuten-body.open { max-height: 400px; }
+
+  .statuten-doc {
+    margin-top: 1rem;
+    background: var(--black);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--red);
+    padding: 1.1rem 1.25rem;
+  }
+
+  .statuten-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .statuten-heading {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .statuten-intro,
+  .statuten-closing {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.55;
+  }
+
+  .statuten-list {
+    list-style: none;
+    margin: 0.5rem 0 0.75rem;
+    padding: 0;
+  }
+
+  .statuten-list li {
+    position: relative;
+    padding: 0.35rem 0 0.35rem 1.6rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.78);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    line-height: 1.5;
+  }
+
+  .statuten-closing--aside {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-style: italic;
+    color: rgba(255,255,255,0.5) !important;
+    font-size: 0.8rem !important;
+  }
+
+  .statuten-list li::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    color: var(--red-light);
+    font-weight: 700;
+  }
+</style>
+
+<section class="timeline" id="reiseplan">
+  <div class="container">
+
+    <div class="timeline__header reveal">
+      <p class="timeline__label">Tag für Tag</p>
+      <h2 class="timeline__title">Der Reiseplan</h2>
+    </div>
+
+    <div class="timeline__track">
+
+      <!-- 1: Abflug Zürich -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/swiss.jpg" alt="Swiss Airbus A340" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Freitag, 5. Februar</p>
+          <p class="tl-item__place">Zürich — Abflug</p>
+          <p class="tl-item__desc">Freitagabend, Koffer gepackt, Abenteuer voraus. Abflug vom Flughafen Zürich Richtung Buenos Aires. Die Nacht verbringen wir in der Luft.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Abflug ZRH 22:45</span>
+            <span class="tl-item__tag">Swiss / LATAM</span>
+            <span class="tl-item__tag">17h Flugzeit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: Buenos Aires -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/buenosaires.jpg" alt="Buenos Aires" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Sa – Mo, 6. – 8. Februar</p>
+          <p class="tl-item__place">Buenos Aires</p>
+          <p class="tl-item__desc">Ankunft gegen Mittag — die Stadt empfängt uns mit Wärme. Drei Tage Zeit für leckere Bierchen, gutes Essen, ein wenig Kultur und einen lehrreichen Stadtrundgang durch eine der lebendigsten Städte Südamerikas.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Stadtrundgang</span>
+            <span class="tl-item__tag">Kulinarik</span>
+            <span class="tl-item__tag">Kultur</span>
+            <span class="tl-item__tag">Bier</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: El Calafate -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/gletscher.jpg" alt="Perito Moreno Gletscher" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Di – Mi, 9. – 10. Februar</p>
+          <p class="tl-item__place">El Calafate & Perito Moreno</p>
+          <p class="tl-item__desc">Inlandsflug nach El Calafate. Am nächsten Morgen das Hauptereignis: der Perito Moreno Gletscher — einer der wenigen wachsenden Gletscher der Welt. Ein lokaler Anbieter organisiert Tour und Transport direkt ans Eis. Danach Weiterfahrt nach El Chaltén.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Inlandsflug</span>
+            <span class="tl-item__tag">Perito Moreno</span>
+            <span class="tl-item__tag">Geführte Tour</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: El Chaltén -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/fitzroy.jpg" alt="Fitz Roy El Chaltén" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Do – Sa, 11. – 13. Februar</p>
+          <p class="tl-item__place">El Chaltén</p>
+          <p class="tl-item__desc">Drei Tage im Herzen Patagoniens. Entspannen, Natur geniessen, Wanderungen in einem der schönsten Nationalparks der Welt. Abends trifft man sich in der Cervecería Chaltén. Wer früh genug aufsteht: der Fitz Roy Sunrise Hike ist sehr zu empfehlen.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Wandern</span>
+            <span class="tl-item__tag">Natur</span>
+            <span class="tl-item__tag">La Cervecería</span>
+            <span class="tl-item__tag">Fitz Roy Sunrise ★</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: Artikel 4 Abend (special) -->
+      <div class="tl-item tl-item--special">
+        <div class="tl-item__img tl-item__img--none" style="background: var(--black);">
+          <span class="tl-item__img--none-inner" style="color: var(--red); font-size:2.5rem;">Art. IV</span>
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Samstagabend, 13. Februar</p>
+          <p class="tl-item__place">El Chaltén — Artikel 4</p>
+          <p class="tl-item__desc">Feierliche Erfüllung der patagonischen Statuten. Anschliessend gemeinsames Abendessen. Ein Abend, der in die Geschichte der Bierfamilie eingehen wird.</p>
+
+          <button class="statuten-toggle" id="statuten-btn" aria-expanded="false" aria-controls="statuten-body">
+            Statuten lesen
+          </button>
+
+          <div class="statuten-body" id="statuten-body">
+            <div class="statuten-doc">
+              <p class="statuten-eyebrow">Statuten der Bierfamilie Patagonia</p>
+              <p class="statuten-heading">Art. 4 — Die drei patagonischen Pflichten</p>
+              <p class="statuten-intro">Jeder Patagonier hat im Verlaufe seines Lebens diese drei Pflichten zu erfüllen:</p>
+              <ul class="statuten-list">
+                <li data-label="a)">fähig sein, sich mit dem patagonischen Volk unterhalten zu können</li>
+                <li data-label="b)">Gras der patagonischen Steppen zu kosten</li>
+                <li data-label="c)">einen Patagonier zeugen</li>
+              </ul>
+              <p class="statuten-closing statuten-closing--aside">Geübte Patagonier sollten in der Lage sein, an jenem Abend alle drei Pflichten zu erfüllen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6: Weiterreise -->
+      <div class="tl-item">
+        <div class="tl-item__img">
+          <img src="img/mendoza.jpg" alt="Mendoza" loading="lazy">
+        </div>
+        <div class="tl-item__dot"><div class="tl-item__dot-inner"></div></div>
+        <div class="tl-item__text">
+          <p class="tl-item__date">Sonntag, 14. Februar — optional</p>
+          <p class="tl-item__place">Individuelle Weiterreise</p>
+          <p class="tl-item__desc">Rückreise oder Weiterreise — je nach Interesse, Zeit und Budget. Der Ältestenrat plant einen Abstecher nach Mendoza: «The Land of Good Sunshine and Good Wine». Wer noch nicht genug hat, ist herzlich eingeladen mitzukommen.</p>
+          <div class="tl-item__tags">
+            <span class="tl-item__tag">Rückreise ab EZE</span>
+            <span class="tl-item__tag">Mendoza optional</span>
+            <span class="tl-item__tag">Wein & Fleisch</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.timeline__track -->
+  </div>
+</section>

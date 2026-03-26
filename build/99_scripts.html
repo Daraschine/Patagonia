@@ -1,0 +1,196 @@
+<!-- ============================================================
+     99_SCRIPTS — alle JavaScript-Blöcke
+     Wird kurz vor </body> eingefügt.
+     ============================================================ -->
+<script>
+// -------------------------------------------------------
+// 1. IntersectionObserver für Scroll-Animationen
+// -------------------------------------------------------
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Einmalig — danach nicht mehr beobachten
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .reveal-stagger, .tl-item').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+
+
+// -------------------------------------------------------
+// 2. Artikel 4 — Toggle mit max-height Transition
+// -------------------------------------------------------
+(function() {
+  var btn = document.getElementById('artikel4-toggle');
+  var body = document.getElementById('artikel4-body');
+  if (!btn || !body) return;
+
+  btn.addEventListener('click', function() {
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+
+    var label = btn.querySelector('.artikel4__seal-label');
+    if (label) {
+      label.textContent = isOpen ? 'Artikel 4 — Aufdecken' : 'Artikel 4 — Zuklappen';
+    }
+  });
+})();
+
+
+// -------------------------------------------------------
+// 3. Interaktive Karte — Popups via click/touch
+// -------------------------------------------------------
+(function() {
+  var mapWrap = document.querySelector('.karte__map-wrap');
+  if (!mapWrap) return;
+
+  var activePopup = null;
+  var activePin = null;
+
+  function closeAll() {
+    if (activePopup) {
+      activePopup.classList.remove('show');
+      activePopup = null;
+    }
+    if (activePin) {
+      activePin.classList.remove('active');
+      activePin = null;
+    }
+  }
+
+  // Position a popup relative to the map wrapper
+  function positionPopup(popup, pin, svgEl) {
+    var svgRect = svgEl.getBoundingClientRect();
+    var wrapRect = mapWrap.getBoundingClientRect();
+
+    // Get the circle element inside the pin group for position reference
+    var circle = pin.querySelector('.map-pin__circle');
+    var circleBBox = circle.getBoundingClientRect();
+
+    // Pin center relative to wrapper
+    var pinX = circleBBox.left - wrapRect.left + circleBBox.width / 2;
+    var pinY = circleBBox.top - wrapRect.top + circleBBox.height / 2;
+
+    var popupW = popup.offsetWidth || 280;
+    var popupH = popup.offsetHeight || 260;
+    var wrapW = wrapRect.width;
+
+    // Default: popup above the pin
+    var left = pinX - popupW / 2;
+    var top  = pinY - popupH - 18;
+
+    // Clamp horizontal: don't go off left or right edge
+    if (left < 4) left = 4;
+    if (left + popupW > wrapW - 4) left = wrapW - popupW - 4;
+
+    // If popup would go above wrapper, show below pin instead
+    if (top < 4) top = pinY + 24;
+
+    popup.style.left = left + 'px';
+    popup.style.top  = top  + 'px';
+  }
+
+  // Activate a pin and its popup
+  function activatePin(pin) {
+    var popupId = pin.getAttribute('data-popup');
+    var popup = document.getElementById(popupId);
+    var svgEl = mapWrap.querySelector('svg');
+    if (!popup || !svgEl) return;
+
+    if (activePopup === popup) {
+      // Same pin: close
+      closeAll();
+      return;
+    }
+
+    closeAll();
+
+    pin.classList.add('active');
+    popup.classList.add('show');
+    activePopup = popup;
+    activePin = pin;
+
+    // Re-run after browser renders the popup (needed for offsetHeight)
+    requestAnimationFrame(function() {
+      positionPopup(popup, pin, svgEl);
+    });
+  }
+
+  // Pin click / touch
+  mapWrap.querySelectorAll('.map-pin').forEach(function(pin) {
+    pin.addEventListener('click', function(e) {
+      e.stopPropagation();
+      activatePin(pin);
+    });
+
+    // Keyboard: Enter / Space
+    pin.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activatePin(pin);
+      }
+    });
+  });
+
+  // Close buttons inside popups
+  mapWrap.querySelectorAll('.map-popup__close').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closeAll();
+    });
+  });
+
+  // Click outside: close
+  document.addEventListener('click', function() {
+    closeAll();
+  });
+
+  // Prevent popup click from bubbling up to document
+  mapWrap.querySelectorAll('.map-popup').forEach(function(p) {
+    p.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
+
+  // Reposition on resize
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      if (activePopup && activePin) {
+        var svgEl = mapWrap.querySelector('svg');
+        positionPopup(activePopup, activePin, svgEl);
+      }
+    }, 100);
+  });
+})();
+
+
+// -------------------------------------------------------
+// 4. Statuten Toggle in der Timeline
+// -------------------------------------------------------
+(function() {
+  var btn  = document.getElementById('statuten-btn');
+  var body = document.getElementById('statuten-body');
+  if (!btn || !body) return;
+
+  btn.addEventListener('click', function() {
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.textContent = isOpen ? 'Statuten lesen' : 'Statuten schliessen';
+    // Re-add the ::after arrow via the aria attribute (CSS handles it)
+  });
+})();
+
+</script>
+
+</body>
+</html>

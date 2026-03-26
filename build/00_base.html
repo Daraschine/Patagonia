@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patagonia Reise 2027 — Bierfamilie Patagonia</title>
+  <meta name="description" content="Die Bierfamilie Patagonia reist im Februar 2027 nach Buenos Aires, El Calafate und El Chaltén. Meld dich an bis 30. April 2026.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Source+Sans+3:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red:        #CC0000;
+      --red-dark:   #990000;
+      --red-light:  #FF2222;
+      --black:      #1a1a1a;
+      --black-soft: #2c2c2c;
+      --white:      #ffffff;
+      --cream:      #F5F0E8;
+      --cream-dark: #E8E0D0;
+      --gray:       #888880;
+      --gray-light: #CCCCCC;
+
+      --font-display: 'Abril Fatface', serif;
+      --font-body:    'Source Sans 3', sans-serif;
+      --font-accent:  'Caveat', cursive;
+
+      --max-width: 1100px;
+      --section-pad: 5rem 1.25rem;
+      --section-pad-mobile: 3.5rem 1.25rem;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--black);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Scroll-animation base state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.25s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.35s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.45s; opacity: 1; transform: none; }
+    .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.55s; opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
